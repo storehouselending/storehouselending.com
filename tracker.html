@@ -9,17 +9,26 @@
 <body>
 <div id="site-header"></div>
 
-<main class="wrap page" style="max-width:760px"><h1>Loan Tracker</h1><p class="sub">Create an account or log in to see your loan status.</p>
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow"><i></i>Loan Tracker</div>
+    <h1>Follow your loan,<br><span class="grad">every step of the way.</span></h1>
+    <p>Log in to see exactly where your loan stands, from application to funding.</p>
+  </div>
+</section>
+
+<main class="page"><div class="wrap lift" style="max-width:760px">
 <!-- DEMO MODE: accounts live in this browser only (localStorage). Replace with a real backend (Supabase, Firebase, etc.) before using with real clients. -->
-<div class="panel" id="auth">
+<div class="panel" id="auth" style="max-width:460px;margin:0 auto"><h3>Welcome back</h3><p class="fine" style="margin:0 0 6px">Log in or create an account to view your loan status.</p>
 <label>Username</label><input id="u" autocomplete="username"><label>Password</label><input id="p" type="password" autocomplete="current-password">
 <button onclick="go(false)">Log In</button> <button class="ghost" onclick="go(true)">Create Account</button><div class="err" id="err"></div>
-<p style="font-size:12px;color:#5f6b7a;margin-top:16px">Demo preview: accounts are stored on this device only.</p></div>
+<p class="fine">Demo preview: accounts are stored on this device only.</p></div>
 
-<div class="panel" id="dash" style="display:none"><h2 style="text-align:left;margin:0" id="hi"></h2>
-<p class="sub" style="text-align:left;margin:4px 0 0">Current status: <b id="st"></b></p>
+<div class="panel" id="dash" style="display:none"><h3 id="hi"></h3>
+<p style="margin:4px 0 0;color:var(--muted)">Current status: <b id="st" style="color:var(--blue)"></b></p>
 <div class="cyl"><div class="fill" id="fill" style="width:0"></div></div><div class="stages" id="stages"></div>
-<button onclick="adv()">Advance status (demo)</button> <button class="ghost" onclick="out()">Log Out</button></div></main>
+<button onclick="adv()">Advance status (demo)</button> <button class="ghost" onclick="out()">Log Out</button></div>
+</div></main>
 
 <script>
 var ST=['Application','Processing','Underwriting','Conditional Approval','Clear to Close','Funded'],$=function(i){return document.getElementById(i)};
