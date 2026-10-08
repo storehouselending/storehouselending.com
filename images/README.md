@@ -12,6 +12,6 @@ Use these exact file names and they show up on the site automatically:
 | `loan-nonqm.jpg` | Home page, Non-QM tile |
 | `loan-jumbo.jpg` | Home page, Jumbo tile |
 | `loan-reverse.jpg` | Home page, Reverse tile |
-| `partner1.png`, `partner2.png`, `partner3.png`, `realtypeoples.png` | Footer partner logos |
+| `partner-petersburg.jpg`, `partner-lienbridge.jpg`, `realtypeoples.jpg` | Footer partner logos (add more in `js/site.js` under `partners`) |
 
 File names are case-sensitive: `logo.jpg` works, `Logo.JPG` does not.
