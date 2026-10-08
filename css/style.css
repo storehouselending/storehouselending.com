@@ -106,6 +106,7 @@ button.ghost{background:#fff;color:var(--blue);border:1px solid var(--blue);box-
 
 /* footer */
 footer{background:var(--ink);color:#fff;padding:48px 0 24px;margin-top:0;border-top:1px solid rgba(255,255,255,.06)}
+footer .wrap{max-width:none;padding:0 clamp(20px,3vw,48px)}
 footer a{color:#fff}
 footer a:hover{color:var(--teal)}
 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
