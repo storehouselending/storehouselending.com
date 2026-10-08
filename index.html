@@ -15,6 +15,24 @@
 .hero2::before{content:"";position:absolute;inset:0;pointer-events:none;
   background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
   background-size:56px 56px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+/* background video + music: drop files in media/ (see media/README.md). Without them the hero looks as before. */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s}
+.hero2.has-video .hero-video{opacity:1}
+.hero-shade{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.2s;
+  background:radial-gradient(ellipse 70% 60% at center,rgba(6,16,34,.55),rgba(6,16,34,.15) 75%),linear-gradient(180deg,rgba(6,16,34,0) 60%,rgba(6,16,34,.6))}
+.hero2.has-video .hero-shade{opacity:1}
+.hero2.has-video::before{display:none}
+.hero2.has-video h1,.hero2.has-video p,.hero2.has-video .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.music-btn{position:absolute;right:20px;bottom:20px;z-index:2;display:none;align-items:center;gap:8px;margin:0;padding:10px 16px;border-radius:99px;font-size:13px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(10px);box-shadow:none}
+.music-btn:hover{background:rgba(255,255,255,.22)}
+.music-btn.ready{display:inline-flex}
+.music-btn .eq{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.music-btn .eq i{width:3px;height:4px;background:#fff;border-radius:2px}
+.music-btn.on .eq i{animation:eq .9s ease-in-out infinite}
+.music-btn.on .eq i:nth-child(2){animation-delay:.2s}.music-btn.on .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{50%{height:12px}}
+@media(prefers-reduced-motion:reduce){.music-btn.on .eq i{animation:none}}
 .hero2-inner{position:relative;max-width:820px;padding:36px 20px 44px}
 /* logo: images/logo.jpg (sky-blue background, white art) */
 .logo-card{display:inline-block;margin-bottom:22px}
@@ -52,6 +70,8 @@
 <div id="site-header"></div>
 
 <section class="hero2">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg" aria-hidden="true"><source src="media/hero.mp4" type="video/mp4"></video>
+  <div class="hero-shade"></div>
   <div class="hero2-inner">
     <div class="logo-card"><img src="images/logo.jpg" alt="Storehouse Lending logo" onerror="if(!this.dataset.png){this.dataset.png=1;this.src='images/logo.png'}else{this.outerHTML='<div class=ph>Logo goes here</div>'}"></div><br>
     <div class="eyebrow"><i></i>Fullerton &middot; Orange County &middot; Southern California</div>
@@ -62,6 +82,8 @@
       <a class="btn btn-glass" href="calculator.html">Estimate My Payment</a>
     </div>
   </div>
+  <button class="music-btn" id="musicBtn" aria-pressed="false"><span class="eq"><i></i><i></i><i></i></span><span id="musicLabel">Play music</span></button>
+  <audio id="bgm" loop preload="metadata" src="media/bgm.mp3"></audio>
 </section>
 
 <section class="tiles">
@@ -74,5 +96,27 @@
 
 <div id="site-footer"></div>
 <script src="js/site.js"></script>
+<script>
+(function(){
+  var hero=document.querySelector('.hero2'),v=hero.querySelector('.hero-video');
+  // show the video only once it actually loads; otherwise remove it and keep the gradient look
+  function showVideo(){hero.classList.add('has-video')}
+  v.addEventListener('loadeddata',showVideo);if(v.readyState>=2)showVideo();
+  v.querySelector('source').addEventListener('error',function(){v.remove()});
+  if(v.networkState===3)v.remove(); // file already failed before this script ran
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause()}
+
+  // background music: browsers only allow sound after the visitor taps, so it starts from this button
+  var a=document.getElementById('bgm'),btn=document.getElementById('musicBtn'),label=document.getElementById('musicLabel'),fade;
+  function showBtn(){btn.classList.add('ready')}
+  a.addEventListener('loadedmetadata',showBtn);if(a.readyState>=1)showBtn();
+  function ramp(to,done){clearInterval(fade);fade=setInterval(function(){var d=to-a.volume;if(Math.abs(d)<.02){a.volume=to;clearInterval(fade);done&&done()}else a.volume+=d>0?.02:-.02},40)}
+  function set(on){btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);label.textContent=on?'Pause music':'Play music'}
+  btn.addEventListener('click',function(){
+    if(a.paused){a.volume=0;a.play().then(function(){set(true);ramp(.35)}).catch(function(){})}
+    else{set(false);ramp(0,function(){a.pause()})}
+  });
+})();
+</script>
 </body>
 </html>
