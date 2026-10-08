@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Loan Tracker | Storehouse Lending</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="wrap page" style="max-width:760px"><h1>Loan Tracker</h1><p class="sub">Create an account or log in to see your loan status.</p>
+<!-- DEMO MODE: accounts live in this browser only (localStorage). Replace with a real backend (Supabase, Firebase, etc.) before using with real clients. -->
+<div class="panel" id="auth">
+<label>Username</label><input id="u" autocomplete="username"><label>Password</label><input id="p" type="password" autocomplete="current-password">
+<button onclick="go(false)">Log In</button> <button class="ghost" onclick="go(true)">Create Account</button><div class="err" id="err"></div>
+<p style="font-size:12px;color:#5f6b7a;margin-top:16px">Demo preview: accounts are stored on this device only.</p></div>
+
+<div class="panel" id="dash" style="display:none"><h2 style="text-align:left;margin:0" id="hi"></h2>
+<p class="sub" style="text-align:left;margin:4px 0 0">Current status: <b id="st"></b></p>
+<div class="cyl"><div class="fill" id="fill" style="width:0"></div></div><div class="stages" id="stages"></div>
+<button onclick="adv()">Advance status (demo)</button> <button class="ghost" onclick="out()">Log Out</button></div></main>
+
+<script>
+var ST=['Application','Processing','Underwriting','Conditional Approval','Clear to Close','Funded'],$=function(i){return document.getElementById(i)};
+var DB=function(){return JSON.parse(localStorage.getItem('slUsers')||'{}')},save=function(d){localStorage.setItem('slUsers',JSON.stringify(d))};
+function hash(s){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')})}
+function go(create){var u=$('u').value.trim().toLowerCase(),p=$('p').value;$('err').textContent='';
+ if(!u||p.length<6){$('err').textContent='Enter a username and a password of at least 6 characters.';return}
+ hash(p).then(function(h){var d=DB();
+  if(create){if(d[u]){$('err').textContent='That username is taken.';return}d[u]={h:h,stage:0};save(d)}
+  else if(!d[u]||d[u].h!==h){$('err').textContent='Incorrect username or password.';return}
+  sessionStorage.setItem('slUser',u);show()})}
+function show(){var u=sessionStorage.getItem('slUser');if(!u||!DB()[u])return;var s=DB()[u].stage;
+ $('auth').style.display='none';$('dash').style.display='block';$('hi').textContent='Welcome, '+u;$('st').textContent=ST[s];
+ $('stages').innerHTML=ST.map(function(x,i){return '<span class="'+(i<=s?'on':'')+'">'+x+'</span>'}).join('');
+ setTimeout(function(){$('fill').style.width=((s+1)/ST.length*100)+'%'},50)}
+function adv(){var u=sessionStorage.getItem('slUser'),d=DB();d[u].stage=Math.min(ST.length-1,d[u].stage+1);save(d);show()}
+function out(){sessionStorage.removeItem('slUser');location.reload()}
+show();
+</script>
+
+<div id="site-footer"></div>
+<script src="js/site.js"></script>
+</body>
+</html>
