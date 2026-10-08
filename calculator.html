@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mortgage Calculator | Storehouse Lending</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="wrap page"><h1>Mortgage Calculator</h1><p class="sub">Estimate your monthly payment. Figures are estimates only.</p>
+<div class="two"><div class="panel"><div class="cols">
+<div><label>Home price ($)</label><input id="price" type="number" value="750000"></div>
+<div><label>Down payment (%)</label><input id="down" type="number" value="20" step="0.5"></div>
+<div><label>Interest rate (%)</label><input id="rate" type="number" value="6.75" step="0.125"></div>
+<div><label>Loan term</label><select id="term"><option value="30">30 years</option><option value="25">25 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div>
+<div><label>Property tax (% / year)</label><input id="tax" type="number" value="1.25" step="0.05"></div>
+<div><label>Home insurance ($ / year)</label><input id="ins" type="number" value="1800"></div>
+<div><label>HOA ($ / month)</label><input id="hoa" type="number" value="0"></div>
+<div><label>PMI (% / year, if under 20% down)</label><input id="pmi" type="number" value="0.5" step="0.05"></div>
+</div></div>
+<div class="panel"><div>Estimated monthly payment</div><p class="big" id="total">$0</p><div class="bar" id="bar"></div><div id="rows"></div>
+<div style="margin-top:14px;color:#5f6b7a;font-size:14px" id="extra"></div></div></div></main>
+
+<script>
+var $=function(i){return document.getElementById(i)},f=function(n){return '$'+Math.round(n).toLocaleString()};
+function calc(){
+ var P=+$('price').value,d=+$('down').value/100,r=+$('rate').value/100/12,n=+$('term').value*12;
+ var L=P*(1-d),pi=r?L*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):L/n;
+ var tax=P*(+$('tax').value/100)/12,ins=+$('ins').value/12,hoa=+$('hoa').value,pmi=d<0.2?L*(+$('pmi').value/100)/12:0;
+ var items=[['Principal & interest',pi,'#1f5fbf'],['Property tax',tax,'#4b8df0'],['Home insurance',ins,'#8db8f5'],['HOA',hoa,'#0f2747'],['PMI',pmi,'#9aa7b8']];
+ var t=items.reduce(function(a,b){return a+b[1]},0);$('total').textContent=f(t);
+ $('bar').innerHTML=items.map(function(i){return '<div style="width:'+(t?i[1]/t*100:0)+'%;background:'+i[2]+'"></div>'}).join('');
+ $('rows').innerHTML=items.map(function(i){return '<div class="row"><span><i class="dot" style="background:'+i[2]+'"></i>'+i[0]+'</span><b>'+f(i[1])+'</b></div>'}).join('');
+ $('extra').innerHTML='Loan amount: <b>'+f(L)+'</b> &nbsp;|&nbsp; Down payment: <b>'+f(P*d)+'</b><br>Total interest over the loan: <b>'+f(pi*n-L)+'</b>';
+}
+document.querySelectorAll('input,select').forEach(function(e){e.addEventListener('input',calc)});calc();
+</script>
+
+<div id="site-footer"></div>
+<script src="js/site.js"></script>
+</body>
+</html>
