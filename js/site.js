@@ -16,7 +16,7 @@ window.SITE={
   var S=SITE,pages=[["index.html","Home"],["loans.html","Loans"],["calculator.html","Mortgage Calculator"],["tracker.html","Loan Tracker"],["about.html","About Us"]];
   var here=location.pathname.split('/').pop()||"index.html";
   var nav=pages.map(function(p){return '<a href="'+p[0]+'"'+(p[0]==here?' class="active"':'')+'>'+p[1]+'</a>'}).join('');
-  document.getElementById('site-header').innerHTML='<header><div class="wrap"><a class="brand" href="index.html"><span>STOREHOUSE LENDING</span><img src="images/logo.jpg" alt="" onerror="this.remove()"></a><button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button><nav>'+nav+'</nav></div></header>';
+  document.getElementById('site-header').innerHTML='<header><div class="wrap"><a class="brand" href="index.html"><img src="images/logo.jpg" alt="" onerror="this.remove()"><span>STOREHOUSE LENDING</span></a><button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button><nav>'+nav+'</nav></div></header>';
   // mobile menu: the button only shows on small screens (see css)
   var hdr=document.querySelector('header'),btn=hdr.querySelector('.menu-btn');
   function setOpen(o){hdr.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);btn.setAttribute('aria-label',o?'Close menu':'Open menu')}
