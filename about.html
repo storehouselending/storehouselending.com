@@ -3,23 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>About Us | Storehouse Lending</title>
+<title>Storehouse Lending</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<style>
+/* ===== HOME PAGE ONLY ===== */
+.display{font-family:'Space Grotesk',system-ui,sans-serif}
+footer{margin-top:0}
+
+/* hero: drop your photo at images/hero.jpg (falls back to a dark gradient until then) */
+.hero2{position:relative;min-height:calc(100vh - 68px);display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;
+  background:linear-gradient(180deg,rgba(6,16,34,.55),rgba(6,16,34,.8)),url('images/hero.jpg') center/cover no-repeat,
+  radial-gradient(1200px 600px at 80% 10%,#1f5fbf 0%,transparent 60%),radial-gradient(900px 500px at 10% 90%,#0b4a8f 0%,transparent 60%),#061022}
+.hero2::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+.hero2-inner{position:relative;max-width:820px;padding:80px 20px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border:1px solid rgba(255,255,255,.18);border-radius:99px;background:rgba(255,255,255,.06);backdrop-filter:blur(8px);
+  font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#b9d3ff}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:#4be3a0;box-shadow:0 0 10px #4be3a0}
+.hero2 h1{color:#fff;font-size:clamp(40px,6.5vw,76px);font-weight:700;letter-spacing:-2px;line-height:1.02;margin:26px 0 22px}
+.hero2 h1 span{background:linear-gradient(90deg,#6fa8ff,#7ff0d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero2 p{font-size:clamp(16px,1.6vw,19px);color:rgba(255,255,255,.78);max-width:640px;margin:0 auto 36px}
+.cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;border-radius:14px;font-weight:600;font-size:15px;transition:.2s}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(31,95,191,.5)}
+.btn-primary:hover{background:#2b6fd6;transform:translateY(-2px);box-shadow:0 14px 36px rgba(31,95,191,.6)}
+.btn-glass{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+.btn-glass:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+/* loan tiles: drop photos at images/loan-conventional.jpg, loan-government.jpg, loan-nonqm.jpg, loan-jumbo.jpg, loan-reverse.jpg */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);background:#061022}
+.tile{position:relative;height:380px;overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:28px;border-right:1px solid rgba(255,255,255,.08)}
+.tile:last-child{border-right:0}
+.tile .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,16,34,.1) 30%,rgba(6,16,34,.88));transition:.3s}
+.tile > *:not(.bg){position:relative;z-index:1}
+.tile .num{position:absolute;top:24px;left:28px;font-size:13px;letter-spacing:2px;color:rgba(255,255,255,.55)}
+.tile h3{font-size:28px;font-weight:600;letter-spacing:-.5px;margin:0}
+.tile small{display:block;color:rgba(255,255,255,.7);font-size:14px;margin-top:4px}
+.tile .go{margin-top:16px;font-size:13px;font-weight:600;color:#7fb2ff;opacity:0;transform:translateY(8px);transition:.3s}
+.tile::before{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,#4b8df0,#7ff0d0);z-index:2;transition:width .4s}
+.tile:hover .bg{transform:scale(1.07)}
+.tile:hover::before{width:100%}
+.tile:hover .go{opacity:1;transform:none}
+.t1 .bg{background-image:url('images/loan-conventional.jpg'),linear-gradient(135deg,#123a73,#0a1d3a)}
+.t2 .bg{background-image:url('images/loan-government.jpg'),linear-gradient(135deg,#1a4c8f,#0b2347)}
+.t3 .bg{background-image:url('images/loan-nonqm.jpg'),linear-gradient(135deg,#0f5a78,#08243a)}
+.t4 .bg{background-image:url('images/loan-jumbo.jpg'),linear-gradient(135deg,#24407f,#0c1a3d)}
+.t5 .bg{background-image:url('images/loan-reverse.jpg'),linear-gradient(135deg,#145a6b,#082833)}
+@media(max-width:1000px){.tiles{grid-template-columns:repeat(2,1fr)}.tile{height:280px;border-bottom:1px solid rgba(255,255,255,.08)}.tile:last-child{grid-column:1/-1}.tile .go{opacity:1;transform:none}}
+@media(max-width:560px){.tiles{grid-template-columns:1fr}.tile{height:220px}}
+</style>
 </head>
 <body>
 <div id="site-header"></div>
 
-<main class="wrap page"><h1>About Us</h1><p class="sub">We'd love to hear from you.</p>
-<div class="two"><div class="panel"><h3 style="margin-top:0;color:#0f2747">Storehouse Lending</h3>
-<p id="names"></p><p><b>Address:</b> <span id="addr"></span></p><p><b>Phone:</b> <a id="tel"></a></p><p><b>Email:</b> <a id="mail"></a></p>
-<iframe class="map" id="map" loading="lazy" title="Map"></iframe></div>
-<div class="panel"><h3 style="margin-top:0;color:#0f2747">Message Us</h3>
-<form name="contact" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="contact">
-<label>Name</label><input name="name" required><label>Email</label><input name="email" type="email" required><label>Phone (optional)</label><input name="phone">
-<label>Message</label><textarea name="message" rows="5" required></textarea><button type="submit">Send Message</button></form></div></div></main>
+<section class="hero2">
+  <div class="hero2-inner">
+    <div class="eyebrow"><i></i>Fullerton &middot; Orange County &middot; Southern California</div>
+    <h1 class="display">Smarter mortgages,<br><span>built around you.</span></h1>
+    <p>Storehouse Lending is a financial brokerage helping buyers, investors, and homeowners find the right mortgage. We shop programs across conventional, government, non-QM, jumbo, and reverse lending to match you with terms that fit your goals.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="loans.html">Explore Loans &rarr;</a>
+      <a class="btn btn-glass" href="calculator.html">Estimate My Payment</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Our Programs &darr;</div>
+</section>
+
+<section class="tiles">
+  <a class="tile t1" href="loans.html#conventional"><div class="bg"></div><span class="num">01</span><h3 class="display">Conventional</h3><small>Conforming &amp; Refi</small><span class="go">Learn more &rarr;</span></a>
+  <a class="tile t2" href="loans.html#government"><div class="bg"></div><span class="num">02</span><h3 class="display">Government</h3><small>FHA &amp; VA</small><span class="go">Learn more &rarr;</span></a>
+  <a class="tile t3" href="loans.html#non-qm"><div class="bg"></div><span class="num">03</span><h3 class="display">Non-QM</h3><small>DSCR, Bank Statement &amp; more</small><span class="go">Learn more &rarr;</span></a>
+  <a class="tile t4" href="loans.html#jumbo"><div class="bg"></div><span class="num">04</span><h3 class="display">Jumbo</h3><small>Purchase &amp; Refinance</small><span class="go">Learn more &rarr;</span></a>
+  <a class="tile t5" href="loans.html#reverse"><div class="bg"></div><span class="num">05</span><h3 class="display">Reverse</h3><small>HECM</small><span class="go">Learn more &rarr;</span></a>
+</section>
 
 <div id="site-footer"></div>
 <script src="js/site.js"></script>
-<script>var S=SITE,$=function(i){return document.getElementById(i)};$('names').innerHTML=S.legalNames.join('<br>');$('addr').textContent=S.address;$('tel').textContent=S.phone;$('tel').href='tel:'+S.phone.replace(/\D/g,'');$('mail').textContent=S.email;$('mail').href='mailto:'+S.email;$('map').src='https://www.google.com/maps?q='+encodeURIComponent(S.address)+'&output=embed';</script>
 </body>
 </html>
