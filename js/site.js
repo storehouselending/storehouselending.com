@@ -2,8 +2,8 @@
 window.SITE={
   name:"Storehouse Lending",
   legalNames:["Storehouse Lending"],
-  address:"100 W. Valencia Mesa Dr, Ste 205, Fullerton, CA 92835", /* used for the map */
-  addressLines:["100 W. Valencia Mesa Dr, Ste 205","Fullerton, CA 92835"], /* how the address is shown */
+  address:"100 W. Valencia Mesa Dr, Suite 205, Fullerton, CA 92835", /* used for the map */
+  addressLines:["100 W. Valencia Mesa Dr, Suite 205","Fullerton, CA 92835"], /* how the address is shown */
   phones:["714.770.0777","714.770.0778"],
   email:"info@storehouselending.com",
   license:"DRE# 02181947 | NMLS# 2342350",
