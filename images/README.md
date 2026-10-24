@@ -5,8 +5,7 @@ Use these exact file names and they show up on the site automatically:
 
 | File name | Where it shows |
 |---|---|
-| `logo.jpg` (or `logo.png`) | Home page, above the location badge |
-| `hero.jpg` | Home page background behind the headline |
+| `logo.jpg` (or `logo.png`) | Header and footer logo |
 | `loan-conventional.jpg` | Home page, Conventional tile |
 | `loan-government.jpg` | Home page, Government tile |
 | `loan-nonqm.jpg` | Home page, Non-QM tile |

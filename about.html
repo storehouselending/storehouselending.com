@@ -22,7 +22,7 @@
   <div class="panel dark"><h3>Storehouse Lending</h3><p id="names" style="margin:0;color:rgba(255,255,255,.6)"></p>
     <ul class="contact">
       <li><span class="ic">&#9679;</span><div><small>Address</small><span id="addr"></span></div></li>
-      <li><span class="ic">&#9742;</span><div><small>Phone</small><a id="tel"></a></div></li>
+      <li><span class="ic">&#9742;</span><div><small>Phone</small><span id="tel"></span></div></li>
       <li><span class="ic">@</span><div><small>Email</small><a id="mail"></a></div></li>
     </ul>
     <iframe class="map" id="map" loading="lazy" title="Map"></iframe></div>
@@ -35,6 +35,6 @@
 
 <div id="site-footer"></div>
 <script src="js/site.js"></script>
-<script>var S=SITE,$=function(i){return document.getElementById(i)};$('names').innerHTML=S.legalNames.join('<br>');$('addr').textContent=S.address;$('tel').textContent=S.phone;$('tel').href='tel:'+S.phone.replace(/\D/g,'');$('mail').textContent=S.email;$('mail').href='mailto:'+S.email;$('map').src='https://www.google.com/maps?q='+encodeURIComponent(S.address)+'&output=embed';</script>
+<script>var S=SITE,$=function(i){return document.getElementById(i)};$('names').innerHTML=S.legalNames.join('<br>');$('addr').innerHTML=S.addressLines.join('<br>');$('tel').innerHTML=phoneLinks('<br>');$('mail').textContent=S.email;$('mail').href='mailto:'+S.email;$('map').src='https://www.google.com/maps?q='+encodeURIComponent(S.address)+'&output=embed';</script>
 </body>
 </html>
