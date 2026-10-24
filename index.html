@@ -38,11 +38,9 @@
 @media(prefers-reduced-motion:reduce){.music-btn.on .eq i{animation:none}}
 .hero2-inner{position:relative;max-width:820px;padding:36px 20px 44px}
 /* photo background: images/hero.jpg. Headline sits at the top and the blurb + buttons at the bottom so the middle of the photo stays clear. */
-.hero-photo{position:absolute;top:0;left:50%;height:100%;width:auto;max-width:none;transform:translateX(-50%);display:none;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.hero-blur{position:absolute;inset:-40px;display:none;background:url('images/hero.jpg') center/cover;filter:blur(28px) brightness(.85)}
-.hero2.has-photo{--h:min(78vh,700px);min-height:var(--h);background:var(--ink)}
-.hero2.has-photo .hero-photo,.hero2.has-photo .hero-blur{display:block}
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:none}
+.hero2.has-photo{--h:min(calc(100vw / 1.79),86vh);min-height:var(--h);background:var(--ink)}
+.hero2.has-photo .hero-photo{display:block}
 .hero2.has-photo .hero-scene{display:none}
 .hero2.has-photo .hero-shade{background:linear-gradient(180deg,rgba(6,16,34,.75) 0%,rgba(6,16,34,.45) 22%,rgba(6,16,34,0) 40%,rgba(6,16,34,0) 62%,rgba(6,16,34,.72) 76%,rgba(6,16,34,.92) 100%)}
 .hero2.has-photo .hero2-inner{align-self:stretch;width:100%;max-width:none;display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:calc(var(--h)*.15) 20px 28px}
@@ -50,8 +48,7 @@
 .hero2.has-photo .hero-bottom p{max-width:880px;font-size:17px;margin-bottom:18px}
 @media(max-width:720px){
   .hero2.has-photo{display:flex;flex-direction:column;min-height:0}
-  .hero2.has-photo .hero-photo{position:relative;left:0;transform:none;width:100%;height:300px;object-fit:cover;object-position:36% 60%;-webkit-mask-image:none;mask-image:none}
-  .hero2.has-photo .hero-blur{display:none}
+  .hero2.has-photo .hero-photo{position:relative;height:300px;object-position:36% 60%}
   .hero2.has-photo .hero-shade{display:none}
   .hero2.has-photo .hero2-inner{padding:28px 20px 40px}
 }
@@ -115,7 +112,6 @@
     <rect class="glint" x="1136" y="724" width="60" height="2" rx="1" style="animation-delay:1.7s"/>
     <rect class="glint" x="1136" y="765" width="100" height="2" rx="1" style="animation-delay:0.2s"/>
   </svg>
-  <div class="hero-blur"></div>
   <img class="hero-photo" src="images/hero.jpg" alt="" aria-hidden="true">
   <div class="hero-shade"></div>
   <div class="hero2-inner">
