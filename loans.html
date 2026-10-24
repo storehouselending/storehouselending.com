@@ -8,6 +8,14 @@
 <style>
 /* ===== LOANS PAGE ONLY ===== */
 .page-hero{padding-bottom:120px}
+/* coastline photo: images/loans-hero.jpg. Text sits over the sky; ocean, beach and train show below. */
+.page-hero.photo{min-height:min(calc(100vw * .5),640px);padding-top:64px;
+  background:radial-gradient(ellipse 45% 42% at 50% 34%,rgba(6,16,34,.38),rgba(6,16,34,0) 100%),linear-gradient(180deg,rgba(6,16,34,.25) 0%,rgba(6,16,34,0) 45%,rgba(6,16,34,0) 75%,rgba(6,16,34,.25) 100%),url('images/loans-hero.jpg') 50% 42%/cover no-repeat,var(--ink)}
+.page-hero.photo::before{display:none}
+.page-hero.photo h1,.page-hero.photo p,.page-hero.photo .eyebrow{text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.page-hero.photo p{color:rgba(255,255,255,.9)}
+.page-hero.photo .grad{background:linear-gradient(90deg,#ffe7a3,#ffffff 55%,#a8f5e0);-webkit-background-clip:text;background-clip:text;text-shadow:none;filter:drop-shadow(0 2px 10px rgba(0,0,0,.35))}
+@media(max-width:720px){.page-hero.photo{min-height:0;background:linear-gradient(180deg,rgba(6,16,34,.3),rgba(6,16,34,.5) 60%,rgba(6,16,34,.3)),url('images/loans-hero.jpg') 62% 50%/cover no-repeat,var(--ink)}}
 
 /* fit finder */
 .finder{margin-top:-80px;position:relative;z-index:3;text-align:center}
@@ -83,7 +91,7 @@
 <body>
 <div id="site-header"></div>
 
-<section class="page-hero">
+<section class="page-hero photo">
   <div class="wrap">
     <div class="eyebrow"><i></i>Loan Programs</div>
     <h1>Find the loan that<br><span class="grad">fits your story.</span></h1>
