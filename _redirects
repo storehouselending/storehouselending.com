@@ -1,0 +1,3 @@
+# Send every visitor and search engine to the main www address
+https://storehouselending.com/*  https://www.storehouselending.com/:splat  301!
+http://storehouselending.com/*   https://www.storehouselending.com/:splat  301!

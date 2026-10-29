@@ -1,0 +1,27 @@
+# Storehouse Lending
+
+> Storehouse Lending is a mortgage broker in Fullerton, California. We help home buyers, homeowners, and real estate investors across Orange County and the rest of California compare loan programs and find a mortgage that fits their goals. Slogan: "Let's Rise Up."
+
+- Office: 100 W. Valencia Mesa Dr, Suite 205, Fullerton, CA 92835
+- Phone: 714.770.0777 | 714.770.0778
+- Email: info@storehouselending.com
+- Hours: Monday to Friday, 9am to 5pm (Pacific)
+- Licensing: NMLS# 2342350, California DRE# 02181947 (NMLS Consumer Access: https://www.nmlsconsumeraccess.org/EntityDetails.aspx/COMPANY/2342350)
+- Areas served: Fullerton, Orange County, and California
+
+## Loan programs
+
+- [Conventional](https://www.storehouselending.com/loans.html#conventional): conforming loans (as little as 3% down for qualified first-time buyers), non-conforming loans, and conventional refinances (rate/term and cash-out).
+- [Government](https://www.storehouselending.com/loans.html#government): FHA loans (as low as 3.5% down, flexible credit) and VA loans (often $0 down, no monthly mortgage insurance) for eligible veterans and service members.
+- [Non-QM](https://www.storehouselending.com/loans.html#non-qm): DSCR loans for real estate investors, bank statement loans and P&L loans for self-employed borrowers, and foreign national loans for non-U.S. citizens.
+- [Jumbo](https://www.storehouselending.com/loans.html#jumbo): jumbo purchase and jumbo refinance loans above conforming loan limits.
+- [Reverse](https://www.storehouselending.com/loans.html#reverse): HECM (FHA-insured reverse mortgage) for homeowners 62 and older.
+
+## Pages
+
+- [Home](https://www.storehouselending.com/): overview of Storehouse Lending and its loan categories.
+- [Loan programs and common questions](https://www.storehouselending.com/loans.html): details on every program, plus answers about down payments, self-employed borrowers, DSCR, jumbo, and reverse mortgages.
+- [Mortgage calculator](https://www.storehouselending.com/calculator.html): estimate a monthly payment with taxes, insurance, HOA, and PMI.
+- [Contact](https://www.storehouselending.com/about.html): address, phone, hours, map, and a message form.
+
+Loan programs are subject to borrower eligibility and underwriting approval. This is not a commitment to lend.
